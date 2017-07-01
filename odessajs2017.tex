@@ -70,6 +70,11 @@
 \setbeamerfont{title in head/foot}{family=\fontspec{Helvetica Neue}}
 \setbeamerfont{author in head/foot}{family=\fontspec{Helvetica Neue}}
 \setbeamerfont{page number in head/foot}{family=\fontspec{Helvetica Neue}}
+\setbeamerfont{bibliography item}{size=\footnotesize}
+\setbeamerfont{bibliography entry author}{size=\footnotesize}
+\setbeamerfont{bibliography entry title}{size=\footnotesize}
+\setbeamerfont{bibliography entry location}{size=\footnotesize}
+\setbeamerfont{bibliography entry note}{size=\footnotesize}
 
 \setbeamercolor{page number in head/foot}{fg=white, bg=black}
 \setbeamercolor{title}{fg=black}
@@ -443,48 +448,56 @@ $C(x_i)$ – Causal history of a replica $i$,
 
 \begin{frame}{References}
 
-\begin{thebibliography}{1}
-
-\bibitem{1} 
+\begin{thebibliography}{9}
+\setbeamertemplate{bibliography item}[text]
+\bibitem{1}
 Marc Shapiro, Nuno Pregui ̧ca, Carlos Baquero, Marek Zawirski. 
-\textit{A comprehensive study of Convergent and Commutative Replicated Data Types.} [Research Report] RR-7506, 2011, pp.50. <inria-00555588>
-
-\bibitem{2} 
+\textit{A comprehensive study of Convergent and Commutative Replicated Data Types.}
+\setbeamertemplate{bibliography item}[text]
+\bibitem{2}
 Yasushi Saito, Marc Shapiro
-\textit{Replication: Optimistic Approaches}, HP Laboratories Palo Alto HPL-2002-33
+\textit{Replication: Optimistic Approaches}
 
-\bibitem{3} 
+\setbeamertemplate{bibliography item}[text]
+\bibitem{3}
 Mihai Let, Nuno Pregui, Marc Shapiro
-\textit{CRDTs: Consistency without concurrency control∗},
+\textit{CRDTs: Consistency without concurrency control∗}
 
+\setbeamertemplate{bibliography item}[text]
 \bibitem{4}
 Giuseppe DeCandia, Deniz Hastorun, Madan Jampani, Gunavardhan Kakulapati, Avinash Lakshman, Alex Pilchin, Swaminathan Sivasubramanian, Peter Vosshall and Werner Vogels
-\textit{Dynamo: Amazon’s Highly Available Key-value Store}, Amazon.com
+\textit{Dynamo: Amazon’s Highly Available Key-value Store}
 
+\setbeamertemplate{bibliography item}[text]
 \bibitem{5}
 G ́erald Oster, Pascal Urso, Pascal Molli, Abdessamad Imine. 
-\textif{Real time group editors without Operational transformation.}
- [Research Report] RR-5580, INRIA. 2005, pp.24.
+\textit{Real time group editors without Operational transformation.}
 
+\setbeamertemplate{bibliography item}[text]
 \bibitem{6}
 Gérald Oster, Pascal Urso†, Pascal Molli, Abdessamad Imine
-\textif{Proving correctness of transformation functions in collaborative editing systems}
-Thèmes COG et SYM — Systèmes cognitifs et Systèmes symboliquesProjets ECOO et CASSIS, Rapport de recherche n° 5795 — Décembre 2005
+\textit{Proving correctness of transformation functions in collaborative editing systems}
 
+\setbeamertemplate{bibliography item}[text]
 \bibitem{7}
 Paulo S ́ergio Almeida, Ali Shoker, and Carlos Baquero
-\textif{Efficient State-based CRDTs by Delta-Mutation}
-HASLab/INESC TEC and Universidade do Minho, Portugal 2015
+\textit{Efficient State-based CRDTs by Delta-Mutation}
 
 \end{thebibliography}	
 
 \end{frame}
 
+
 \begin{frame}
 \center{Thanks}
 \center{@maxmaxmaxmax}
-\end{frame}
 
+\vspace{1cm}
+\begin{footnotesize}
+\href{https://github.com/joymax/odessajs2017}{https://github.com/joymax/odessajs2017}
+\end{footnotesize}
+
+\end{frame}
 
 \end{document}
 
