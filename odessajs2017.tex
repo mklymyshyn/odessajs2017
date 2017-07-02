@@ -368,13 +368,13 @@ This kind of replication is very handy for client-side developers because:
 \begin{frame}{CvRDT and CmRDT Properties}
 \framesubtitle{Required properties}
 
-$C(x_i)$ – Causal history of a replica $i$, 
+In Abstract Algebra a CRDT is formally known as a Semilattice.
+All Semilattices must have the following properties:
 
 \begin{itemize}
-	\item \textbf{convergence} – $\forall i,j : C(x_i) = C(x_j)$
-	\item \textbf{associativity} – nodes must come to the exactly same state regardless of the order they receive information: $a \odot b = b \odot a$, 
-	\item \textbf{idempotency} – $a \odot a = a$
-	\item least upper bound or LUB – $\sqcup_v$ which maintains
+	\item \textbf{commutativity} – $\forall x, y : x \odot y = y \odot x$
+	\item \textbf{associativity} – nodes must come to the exactly same state regardless of the order they receive information: $x \odot (y \odot z) = (x \odot y) \odot z$
+	\item \textbf{idempotency} – $x \odot x = x$
 \end{itemize}
 
 \begin{figure}[!ht]
