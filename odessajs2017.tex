@@ -167,6 +167,18 @@ Examples of Groupware Systems:
 \end{frame}
 
 
+\begin{frame}{Why?}
+
+It matters for JavaScript and especially for client-side developers:
+\vspace{1cm}
+\begin{block}{\textbf{backend-free systems}}
+\vspace{0.3cm}
+It's is possible to create and maintain completely back-end less \textbf{p2p architecture} using WebRTC, \textbf{$\delta$-mutation} and different types of sharding.
+\vspace{0.3cm}
+\end{block}
+\end{frame}
+
+
 \begin{frame}{Synchronization in asynchronous environment}
 \framesubtitle{and different types of distributed replication approaches}
 
@@ -455,6 +467,17 @@ All Semilattices must have the following properties:
 \end{frame}
 
 
+\begin{frame}{Drawbacks of CRDT}
+\framesubtitle{Everything at a cost}
+However, a major drawback in current state-based CRDTs is \textbf{the communication overhead of shipping the entire state}, which can get very large in size. For instance, the size of a counter CRDT (a vector of integer counters, one per replica) \textit{increases with the number of replicas}; whereas in a grow-only Set, the state size depends on the set size, that grows as more operations are invoked.
+\end{frame}
+
+\begin{frame}{$\delta$-mutation}
+\framesubtitle{Everything at a cost}
+However, a major drawback in current state-based CRDTs is \textbf{the communication overhead of shipping the entire state}, which can get very large in size. For instance, the size of a counter CRDT (a vector of integer counters, one per replica) \textit{increases with the number of replicas}; whereas in a grow-only Set, the state size depends on the set size, that grows as more operations are invoked.
+\end{frame}
+
+
 \begin{frame}{References}
 
 \begin{thebibliography}{9}
@@ -522,6 +545,12 @@ Pascal Molli, Ge ́rald Oster
 \bibitem{11}
 Pascal Molli, Ge ́rald Oster
 \textit{Using the Transformatinal Approach to Build a Safe and Generic Data Synchronizer}
+
+\setbeamertemplate{bibliography item}[text]
+\bibitem{12}
+Paulo S ́ergio Almeida, Ali Shoker, and Carlos Baquero
+\textit{Delta State Replicated Data Types}, 2016
+
 
 \end{thebibliography}	
 \end{frame}
