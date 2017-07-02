@@ -1,0 +1,5 @@
+[OP] [BEFORE MERGE] pncounter1++: c1=2, c2=0
+[OP] [AFTER MERGE] pncounter1++: c1=2, c2=2
+[OP] [BEFORE MERGE] pncounter2--: c1=2, c2=1
+[OP] [BEFORE MERGE] pncounter1++: c1=3, c2=1
+[OP] [AFTER MERGE]: c1=2, c2=2

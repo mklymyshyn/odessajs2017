@@ -121,6 +121,40 @@ class PNCounter {
   }
 }
 \end{VerbatimOut}
+
+
+\begin{VerbatimOut}{pncounter-test.js}
+function examples_PNCounter() {
+  let log = (op, c1, c2) => console.log(
+    "[OP] " + op + ": c1=" + c1.query() + ", c2=" + c2.query());
+  let pn_counter1 = new PNCounter(
+    new GCounter(0), new GCounter(0));
+  let pn_counter2 = new PNCounter(
+    new GCounter(0), new GCounter(0));
+
+  pn_counter1 = pn_counter1.increment();
+  pn_counter1 = pn_counter1.increment();
+  log("[BEFORE MERGE] pncounter1++", pn_counter1, pn_counter2);
+  pn_counter2 = pn_counter2.merge(pn_counter1);
+  log("[AFTER MERGE] pncounter1++", pn_counter1, pn_counter2);
+  pn_counter2 = pn_counter2.decrement();
+  log("[BEFORE MERGE] pncounter2--", pn_counter1, pn_counter2);
+  pn_counter1 = pn_counter1.increment();
+  log("[BEFORE MERGE] pncounter1++", pn_counter1, pn_counter2);
+  pn_counter1 = pn_counter1.merge(pn_counter2);
+  pn_counter2 = pn_counter2.merge(pn_counter1);
+  log("[AFTER MERGE]", pn_counter1, pn_counter2);
+}
+\end{VerbatimOut}
+
+\begin{VerbatimOut}{output-pncounter.js.txt}
+[OP] [BEFORE MERGE] pncounter1++: c1=2, c2=0
+[OP] [AFTER MERGE] pncounter1++: c1=2, c2=2
+[OP] [BEFORE MERGE] pncounter2--: c1=2, c2=1
+[OP] [BEFORE MERGE] pncounter1++: c1=3, c2=1
+[OP] [AFTER MERGE]: c1=2, c2=2
+\end{VerbatimOut}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%  END OF CODE SNIPPETS            %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -171,11 +205,11 @@ Examples of Groupware Systems:
 
 It matters for JavaScript and especially for client-side developers:
 \vspace{1cm}
-\begin{block}{\textbf{backend-free systems}}
-\vspace{0.3cm}
-It's is possible to create and maintain completely back-end less \textbf{p2p architecture} using WebRTC, \textbf{$\delta$-mutation} and different types of sharding.
-\vspace{0.3cm}
-\end{block}
+\begin{itemize}
+	\item \textbf{backend-free systems} – It's is possible to create and maintain completely back-end less \textbf{p2p architecture} using WebRTC, \textbf{$\delta$-mutation} and different types of sharding.
+	\item consistent behavior for devices with same service (gmail, notes etc.)
+	\item network-partition tolerance
+\end{itemize}
 \end{frame}
 
 
@@ -441,6 +475,33 @@ All Semilattices must have the following properties:
 \end{frame}
 
 
+\begin{frame}{CRDT: PNCounter Test}
+\framesubtitle{Increment and decrement counter}
+
+\inputminted[
+  firstline=1,
+  framesep=0.01cm,
+  frame=leftline,
+  baselinestretch=1.1,
+  fontsize=\scriptsize,
+  rulecolor=\color{white}
+  linenos=true]{javascript}{pncounter-test.js}
+\end{frame}
+
+
+\begin{frame}{CRDT: PNCounter example output}
+
+\inputminted[
+  firstline=1,
+  framesep=0.5cm,
+  frame=leftline,
+  baselinestretch=1.1,
+  fontsize=\scriptsize,
+  rulecolor=\color{white}
+  linenos=true]{text}{output-pncounter.js.txt}
+  
+\end{frame}
+
 \begin{frame}{Existing Tools}
 
 \begin{itemize}
@@ -468,13 +529,20 @@ All Semilattices must have the following properties:
 
 
 \begin{frame}{Drawbacks of CRDT}
-\framesubtitle{Everything at a cost}
+\framesubtitle{you can't pour two buckets of shit into one bucket}
 However, a major drawback in current state-based CRDTs is \textbf{the communication overhead of shipping the entire state}, which can get very large in size. For instance, the size of a counter CRDT (a vector of integer counters, one per replica) \textit{increases with the number of replicas}; whereas in a grow-only Set, the state size depends on the set size, that grows as more operations are invoked.
 \end{frame}
 
 \begin{frame}{$\delta$-mutation}
 \framesubtitle{Everything at a cost}
-However, a major drawback in current state-based CRDTs is \textbf{the communication overhead of shipping the entire state}, which can get very large in size. For instance, the size of a counter CRDT (a vector of integer counters, one per replica) \textit{increases with the number of replicas}; whereas in a grow-only Set, the state size depends on the set size, that grows as more operations are invoked.
+
+\begin{itemize}
+	\item “state fragments” merged using desired semantics
+	\item ${\delta}$-mutators, defined in such a way to return a delta-state, typically, with a much smaller size than the full state.
+\end{itemize}
+
+\center
+\textbf{\href{https://github.com/CBaquero/delta-enabled-crdts}{delta-enabled-crdts}} 
 \end{frame}
 
 
