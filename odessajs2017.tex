@@ -16,7 +16,6 @@
 
 \newcommand*{\grabto}[2]{\IfFileExists{#2}{}{\immediate\write18{curl \detokenize{#1 -o #2}}}}
 
-
 \tikzset{
     vertex/.style = {
         circle,
@@ -171,11 +170,12 @@ Examples of Groupware Systems:
 \begin{frame}{Synchronization in asynchronous environment}
 \framesubtitle{and different types of distributed replication approaches}
 
-Here is list of basic problems within asynchronous setting:
+Here is list of fundamental problems within asynchronous setting:
 \begin{itemize}
-\item \textbf{conflicts} \small{\textit{when participants performing group activities}}
-\item \textbf{unreliable networks} \small{\textit{primarily mobile clients with blinking connection}}
-\item \textbf{offline activities} \small{\textit{allowing users to perform operations offline like editing text}}
+
+\item \textbf{divergence} \small{\textit{Final document contents are different on all sites}}
+\item \textbf{causality-violations} \small{\textit{Execution order is different eq $o_1 \rightarrow o_3$}}
+\item \textbf{intention-violoation} \small{\textit{the actual effect is different from intended effect eq $o_1 || o_2$}}
 \end{itemize}
 \end{frame}
 
@@ -385,6 +385,21 @@ All Semilattices must have the following properties:
 \end{frame}
 
 
+\begin{frame}{CRDT: Types}
+\framesubtitle{Registers, Counters, Sets}
+
+\begin{itemize}
+  \item Register: LWW or Multi-Value (Dynamo or Couchdb-like)
+  \item Counter (growth-only) and Counter w/decrementing
+  \item G-Set – growth-only set
+  \item 2P-Set – remove only once set (G-Set + Tombstones set)
+  \item LWW-Element-Set – vector clocks 
+  \item OR-Set – unique-tagged elements and list of tags within Tombstones set
+  \item Treedoc, Logoot etc.
+\end{itemize}
+\end{frame}
+
+
 \begin{frame}{CRDT: GCounter}
 \framesubtitle{Increment only counter}
 
@@ -425,12 +440,6 @@ All Semilattices must have the following properties:
   \item other CRDT implementations
 \end{itemize}
 
-\end{frame}
-
-
-\begin{frame}{Operation-based OR-Set}
-\framesubtitle{Example of CmRDT data type (couple slides)}
-\textit{Example add/remove set implementation in JS}
 \end{frame}
 
 
@@ -478,14 +487,45 @@ G ́erald Oster, Pascal Urso, Pascal Molli, Abdessamad Imine.
 Gérald Oster, Pascal Urso†, Pascal Molli, Abdessamad Imine
 \textit{Proving correctness of transformation functions in collaborative editing systems}
 
+\end{thebibliography}	
+
+\end{frame}
+
+
+
+
+\begin{frame}
+\begin{thebibliography}{99}
+
 \setbeamertemplate{bibliography item}[text]
 \bibitem{7}
 Paulo S ́ergio Almeida, Ali Shoker, and Carlos Baquero
 \textit{Efficient State-based CRDTs by Delta-Mutation}
 
-\end{thebibliography}	
+\setbeamertemplate{bibliography item}[text]
+\bibitem{8}
+A. Bieniusa, M. Zawirski, N. Preguiça, M. Shapiro, Carlos Baquero, Valter Balegas, Sérgio Duarte.
+\textit{An Optimized Conflict-free Replicated Set.}
 
+\setbeamertemplate{bibliography item}[text]
+\bibitem{9}
+C.A. Ellis, S.J. Gibbs
+\textit{Concurrency Control in Groupware Systems}
+
+\setbeamertemplate{bibliography item}[text]
+\bibitem{10}
+Pascal Molli, Ge ́rald Oster
+\textit{Using the Transformatinal Approach to Build a Safe and Generic Data Synchronizer}
+
+
+\setbeamertemplate{bibliography item}[text]
+\bibitem{11}
+Pascal Molli, Ge ́rald Oster
+\textit{Using the Transformatinal Approach to Build a Safe and Generic Data Synchronizer}
+
+\end{thebibliography}	
 \end{frame}
+
 
 
 \begin{frame}
